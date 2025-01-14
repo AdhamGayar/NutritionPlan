@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Nutrition Table</title>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Styles for tablets and smaller devices (max-width: 768px) */
+        @media (max-width: 1120px) {
+            body {
+                font-size: 14px;
+                display: block;
+                margin: auto;
+            }
+
+        }
+
+        /* Styles for mobile phones (max-width: 480px) */
+        /* @media (max-width: 480px) {
+            body {
+                font-size: 14px;
+                display: block;
+                margin: 0;
+            }
+
+        } */
+
+        .table-container {
+            overflow-x: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            background-color: #fff;
+            margin: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        thead {
+            background-color: #292929;
+            color: #ddd;
+            font-weight: bold;
+        }
+
+        tbody tr:nth-child(odd) {
+            background-color: #f9f9f9;
+        }
+
+        tfoot {
+            background-color: #292929;
+            color: #ddd;
+            font-weight: bold;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            position: relative;
+            /* Enables positioning for child elements */
+        }
+
+        tfoot td {
+            text-align: center;
+        }
+
+        .dark-cell {
+            background-color: #292929;
+            color: #ddd;
+            font-weight: bold;
+        }
+
+
+        /* Styling for small numbers */
+        .small-number {
+            font-size: 0.7em;
+            color: #464646;
+            font-weight: bolder;
+            /* position: absolute;
+    top: 5px;
+    left: 1px; */
+        }
+
+        /* Styling for small text */
+        .small-text {
+            font-size: 0.7em;
+            color: #464646;
+            /* position: absolute;
+    top: 5px;
+    left: 1px; */
+        }
+
+        /* General Input Box Styling */
+        input[type="number"] {
+            width: 80px;
+            /* Adjust width to fit your layout */
+            padding: 5px;
+            border: 1px solid #ccc;
+            /* Light gray border */
+            border-radius: 5px;
+            /* Rounded corners */
+            font-size: 14px;
+            text-align: center;
+            /* Center text inside the box */
+            background-color: #f9f9f9;
+            /* Light background color */
+            font-weight: bolder;
+            color: #333;
+            /* Dark text color */
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+            /* Subtle inner shadow */
+            transition: all 0.3s ease;
+            /* Smooth hover and focus effect */
+        }
+
+        /* Hover Effect */
+        input[type="number"]:hover {
+            border-color: #999;
+            /* Darker border on hover */
+        }
+
+        /* Focus Effect */
+        input[type="number"]:focus {
+            border-color: #007bff;
+            /* Blue border on focus */
+            outline: none;
+            /* Remove default outline */
+            background-color: #fff;
+            /* White background on focus */
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+            /* Blue glow on focus */
+        }
+
+        input[type="text"] {
+            width: 50px;
+            /* Adjust width to fit your layout */
+            padding: 5px;
+            border-radius: 5px;
+            /* Rounded corners */
+            font-size: 14px;
+            color: #b4b4b4;
+            font-weight: bolder;
+            text-align: center;
+            /* Center text inside the box */
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+            /* Subtle inner shadow */
+            transition: all 0.3s ease;
+            /* Smooth hover and focus effect */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Food Group</th>
+                    <th>Serving Units</th>
+                    <th>Carb</th>
+                    <th>Protein</th>
+                    <th>Fat</th>
+                    <th>Fiber</th>
+                    <th>Calorie</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="background-color: #f9e79f;">
+                    <td>Starch</td>
+                    <td><input type="number" min="0" /></td>
+                    <td><span class="small-number">15</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">3</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">1</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">1.75</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">80</span> <input type="text" value="0.00" disabled /></td>
+                </tr>
+                <tr style="background-color: #d4efdf;">
+                    <td>Vegetables</td>
+                    <td><input type="number" min="0" /></td>
+                    <td><span class="small-number">5</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">2</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">0</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">1.5</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">25</span> <input type="text" value="0.00" disabled /></td>
+                </tr>
+                <tr style="background-color: #f5b7b1;">
+                    <td>Fruits</td>
+                    <td><input type="number" min="0" /></td>
+                    <td><span class="small-number">15</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">0</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">0</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">1.5</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">60</span> <input type="text" value="0.00" disabled /></td>
+                </tr>
+                <tr style="background-color: #fadbd8;">
+                    <td>Legume</td>
+                    <td><input type="number" min="0" /></td>
+                    <td><span class="small-number">15</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">7</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">1</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">3</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">110</span> <input type="text" value="0.00" disabled /></td>
+                </tr>
+                <tr style="background-color: #d6eaf8;">
+                    <td>Milk <span class="small-text">Low Fat</span></td>
+                    <td><input type="number" min="0" /></td>
+                    <td><span class="small-number">12</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">8</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">3</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">0</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">100</span> <input type="text" value="0.00" disabled /></td>
+                </tr>
+                <tr style="background-color: #d6eaf8;">
+                    <td>Milk <span class="small-text">Medium Fat</span></td>
+                    <td><input type="number" min="0" /></td>
+                    <td><span class="small-number">12</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">8</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">5</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">0</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">120</span> <input type="text" value="0.00" disabled /></td>
+                </tr>
+                <tr style="background-color: #d6eaf8;">
+                    <td>Milk <span class="small-text">High Fat</span></td>
+                    <td><input type="number" min="0" /></td>
+                    <td><span class="small-number">12</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">8</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">8</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">0</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">160</span> <input type="text" value="0.00" disabled /></td>
+                </tr>
+                <tr style="background-color: #f5b7b1;">
+                    <td>Meat <span class="small-text">Low Fat</span></td>
+                    <td><input type="number" min="0" /></td>
+                    <td><span class="small-number">0</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">7</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">3</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">0</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">45</span> <input type="text" value="0.00" disabled /></td>
+                </tr>
+                <tr style="background-color: #f5b7b1;">
+                    <td>Meat <span class="small-text">Medium Fat</span></td>
+                    <td><input type="number" min="0" /></td>
+                    <td><span class="small-number">0</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">7</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">5</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">0</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">75</span> <input type="text" value="0.00" disabled /></td>
+                </tr>
+                <tr style="background-color: #f5b7b1;">
+                    <td>Meat <span class="small-text">High Fat</span></td>
+                    <td><input type="number" min="0" /></td>
+                    <td><span class="small-number">0</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">7</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">8</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">0</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">100</span> <input type="text" value="0.00" disabled /></td>
+                </tr>
+                <tr style="background-color: #fadbd8;">
+                    <td>Fat <span class="small-text">SFA</span></td>
+                    <td><input type="number" min="0" /></td>
+                    <td><span class="small-number">0</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">0</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">5</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">0</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">45</span> <input type="text" value="0.00" disabled /></td>
+                </tr>
+                <tr style="background-color: #fadbd8;">
+                    <td>Fat <span class="small-text">MUFA</span></td>
+                    <td><input type="number" min="0" /></td>
+                    <td><span class="small-number">0</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">0</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">5</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">0</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">45</span> <input type="text" value="0.00" disabled /></td>
+                </tr>
+                <tr style="background-color: #fadbd8;">
+                    <td>Fat <span class="small-text">PUFA</span></td>
+                    <td><input type="number" min="0" /></td>
+                    <td><span class="small-number">0</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">0</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">5</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">0</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">45</span> <input type="text" value="0.00" disabled /></td>
+                </tr>
+                <tr style="background-color: #d6eaf8;">
+                    <td>Other</td>
+                    <td><input type="number" min="0" /></td>
+                    <td><span class="small-number">15</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">0</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">0</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">0</span> <input type="text" value="0.00" disabled /></td>
+                    <td><span class="small-number">60</span> <input type="text" value="0.00" disabled /></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2">Total</td>
+                    <td id="total-carb">0</td>
+                    <td id="total-protein">0</td>
+                    <td id="total-fat">0</td>
+                    <td id="total-fiber">0</td>
+                    <td id="total-calories-table1">0</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <div class="table-container">
+        <table id="nutrition-table" style="margin-bottom: 60px;">
+            <thead>
+
+                <tr>
+                    <th colspan="4">Target</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="1">Calories</td>
+                    <td colspan="1"><input type="number" min="0" id="total-calories-table2" value="0" /></td>
+                    <td class="dark-cell">In Calories</td>
+                    <td class="dark-cell">In Grams</td>
+
+                </tr>
+                <tr>
+                    <td>Carb %</td>
+                    <td><input type="number" min="0" class="percentage-input" value="55" /></td>
+                    <td class="calories-cell"></td>
+                    <td id="carb-in-grams" class="grams-cell"></td>
+                </tr>
+                <tr>
+                    <td>Protein %</td>
+                    <td><input type="number" min="0" class="percentage-input" value="18" /></td>
+                    <td class="calories-cell"></td>
+                    <td id="protein-in-grams" class="grams-cell"></td>
+                </tr>
+                <tr>
+                    <td>Fat %</td>
+                    <td><input type="number" min="0" class="percentage-input" value="27" /></td>
+                    <td class="calories-cell"></td>
+                    <td id="fat-in-grams" class="grams-cell"></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4" id="total-percentage">100.00%</td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <table id="">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Remaining</th>
+                    <th>Current</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="dark-cell">Calories g</td>
+                    <td id="remaining-calories">0</td>
+                    <td id="current-calories">0</td>
+                </tr>
+                <tr>
+                    <td class="dark-cell">Carb g</td>
+                    <td id="remaining-carb">0</td>
+                    <td id="current-carb">0</td>
+                </tr>
+                <tr>
+                    <td class="dark-cell">Protein g</td>
+                    <td id="remaining-protein">0</td>
+                    <td id="current-protein">0</td>
+                </tr>
+                <tr>
+                    <td class="dark-cell">Fat g</td>
+                    <td id="remaining-fat">0</td>
+                    <td id="current-fat">0</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+
+
+
+<script>
+
+    function calculateValues() {
+        // Select all rows with inputs
+        const rows = document.querySelectorAll("tr");
+
+        rows.forEach((row) => {
+            // Find the number input and small-number spans in the row
+            const numberInput = row.querySelector('input[type="number"]');
+            const smallNumbers = row.querySelectorAll(".small-number");
+            const resultInputs = row.querySelectorAll('input[type="text"][disabled]');
+
+            if (numberInput && smallNumbers.length === resultInputs.length) {
+                // Get the value of the number input
+                const multiplier = parseFloat(numberInput.value) || 0;
+
+                // Loop through the small-number and disabled input fields
+                smallNumbers.forEach((smallNumber, index) => {
+                    const factor = parseFloat(smallNumber.textContent) || 0;
+                    const resultInput = resultInputs[index];
+
+                    // Calculate and set the value of the disabled input
+                    const result = (multiplier * factor).toFixed(2); // Keeps 2 decimal places
+                    resultInput.value = result;
+                });
+            }
+        });
+    }
+
+    function calculateColumnSum(columnIndex, td_id) {
+        let sum = 0;
+
+        // Select all rows in the table
+        const rows = document.querySelectorAll("tr");
+
+        rows.forEach((row) => {
+            // Find the disabled input in the specified column
+            const input = row.querySelectorAll('input[type="text"][disabled]')[columnIndex];
+            if (input) {
+                const value = parseFloat(input.value) || 0; // Get value or 0 if empty
+                sum += value;
+            }
+        });
+
+        document.getElementById(td_id).textContent = sum;
+        return sum;
+    }
+
+    // Attach the function to the input event of all number inputs
+    document.querySelectorAll('input[type="number"]').forEach((input) => {
+
+        input.addEventListener("input", calculateValues);
+
+        input.addEventListener("input", () => calculateColumnSum(0, "total-carb"));
+        input.addEventListener("input", () => calculateColumnSum(1, "total-protein"));
+        input.addEventListener("input", () => calculateColumnSum(2, "total-fat"));
+        input.addEventListener("input", () => calculateColumnSum(3, "total-fiber"));
+        input.addEventListener("input", () => calculateColumnSum(4, "total-calories-table1"));
+
+        input.addEventListener("input", updateTargetTable);
+        input.addEventListener("input", updateResultsTable);
+    });
+
+
+    function updateTargetTable() {
+
+        const totalCaloriesInput = document.getElementById("total-calories-table2");
+        const percentageInputs = document.querySelectorAll(".percentage-input");
+        const caloriesCells = document.querySelectorAll(".calories-cell");
+        const gramsCells = document.querySelectorAll(".grams-cell");
+        const totalPercentageDisplay = document.getElementById("total-percentage");
+
+        const totalCalories = parseFloat(totalCaloriesInput.value) || 0;
+        let totalPercentage = 0;
+
+        percentageInputs.forEach((input, index) => {
+            const percentage = parseFloat(input.value) || 0;
+            totalPercentage += percentage;
+
+            const calories = (percentage / 100) * totalCalories;
+            caloriesCells[index].textContent = calories.toFixed(0);
+            if (index == 2) {
+                gramsCells[index].textContent = (calories / 9).toFixed(1);
+            }
+            else {
+                gramsCells[index].textContent = (calories / 4).toFixed(1);
+            }
+
+        });
+        
+        if(totalPercentage > 100){
+            alert("Total exceeded 100% percentage");
+            totalPercentageDisplay.style.backgroundColor = "red";
+        }else{
+            totalPercentageDisplay.style.backgroundColor = "#292929";
+        }
+
+        totalPercentageDisplay.textContent = totalPercentage.toFixed(2) + "%";
+    }
+
+    function updateResultsTable() {
+        const totalCaloriesTable1 = document.getElementById("total-calories-table1").innerText;
+        const totalCarb = document.getElementById("total-carb").innerText;
+        const totalProtein = document.getElementById("total-protein").innerText;
+        const totalFat = document.getElementById("total-fat").innerText;
+
+        const totalCaloriesTable2 = document.getElementById("total-calories-table2").value;
+        const carbInGrams = document.getElementById("carb-in-grams").innerText;
+        const proteinInGrams = document.getElementById("protein-in-grams").innerText;
+        const fatInGrams = document.getElementById("fat-in-grams").innerText;
+
+        document.getElementById("current-calories").innerText = totalCaloriesTable1;
+        document.getElementById("current-carb").innerText = totalCarb;
+        document.getElementById("current-protein").innerText = totalProtein;
+        document.getElementById("current-fat").innerText = totalFat;
+
+
+        document.getElementById("remaining-calories").innerText = totalCaloriesTable2 - totalCaloriesTable1;
+        document.getElementById("remaining-carb").innerText = carbInGrams - totalCarb;
+        document.getElementById("remaining-protein").innerText = proteinInGrams - totalProtein;
+        document.getElementById("remaining-fat").innerText = fatInGrams - totalFat;
+
+        document.getElementById("remaining-calories").style.color = "white";
+        document.getElementById("remaining-carb").style.color = "white";
+        document.getElementById("remaining-protein").style.color = "white";
+        document.getElementById("remaining-fat").style.color = "white";
+
+        if (document.getElementById("remaining-calories").innerText >= 0) {
+            document.getElementById("remaining-calories").style.backgroundColor = "green";
+        } else {
+            document.getElementById("remaining-calories").style.backgroundColor = "red";
+        }
+
+        if (document.getElementById("remaining-carb").innerText >= 0) {
+            document.getElementById("remaining-carb").style.backgroundColor = "green";
+        } else {
+            document.getElementById("remaining-carb").style.backgroundColor = "red";
+        }
+
+        if (document.getElementById("remaining-protein").innerText >= 0) {
+            document.getElementById("remaining-protein").style.backgroundColor = "green";
+        } else {
+            document.getElementById("remaining-protein").style.backgroundColor = "red";
+        }
+
+        if (document.getElementById("remaining-fat").innerText >= 0) {
+            document.getElementById("remaining-fat").style.backgroundColor = "green";
+        } else {
+            document.getElementById("remaining-fat").style.backgroundColor = "red";
+        }
+    }
+
+
+
+</script>
+
+</html>
